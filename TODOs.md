@@ -37,7 +37,7 @@ minishell/
 PROJECT STRUCTURE SUGGESTED by Samir:
 <please provide if there are suggestions>
 
-
+we can do the tree data structure but there is one issue in it. it is quite efficient but normally people who do bonus and also add && and || typically need the tree data structure, those who do the mantadory part only do it with the array or linked list. as you are doing the parsing you need to make the data structure, so if youre gonna do the tree im completely fine with that. its just a suggestion
 
 
 
