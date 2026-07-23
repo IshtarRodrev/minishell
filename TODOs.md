@@ -18,20 +18,16 @@ minishell/
 │   │
 │   ├── parser/
 │   │   └── parser.c
-│   │
 │   ├── executor/
 │   │   ├── exec.c
 │   │   └── signals.c
-│   │
 │   ├── env/
 │   │   ├── env_init.c
 │   │   ├── env_utils.c
 │   │   └── env_update.c
-│   │
 │   └── utils/
 │       ├── error.c
 │       └── free.c
-│
 └── libft/   (optional, probably wont be added)
 
 PROJECT STRUCTURE SUGGESTED by Samir:
