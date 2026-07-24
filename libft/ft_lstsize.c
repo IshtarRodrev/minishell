@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhanmasfickhoque <farhanmasfickhoque@    +#+  +:+       +#+        */
+/*   By: shoque <shoque@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/24 18:16:23 by farhanmasfi       #+#    #+#             */
-/*   Updated: 2026/07/24 18:16:25 by farhanmasfi      ###   ########.fr       */
+/*   Created: 2025/07/31 02:44:43 by shoque            #+#    #+#             */
+/*   Updated: 2025/07/31 02:55:26 by shoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#include "libft.h"
+
+int	ft_lstsize(t_list *lst)
 {
-	return (0);
+	int	len;
+
+	len = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		len++;
+	}
+	return (len);
 }

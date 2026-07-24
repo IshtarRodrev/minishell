@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhanmasfickhoque <farhanmasfickhoque@    +#+  +:+       +#+        */
+/*   By: shoque <shoque@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/24 18:16:23 by farhanmasfi       #+#    #+#             */
-/*   Updated: 2026/07/24 18:16:25 by farhanmasfi      ###   ########.fr       */
+/*   Created: 2025/07/31 04:09:24 by shoque            #+#    #+#             */
+/*   Updated: 2025/08/03 19:20:44 by shoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#include "libft.h"
+
+t_list	*ft_lstlast(t_list *lst)
 {
-	return (0);
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhanmasfickhoque <farhanmasfickhoque@    +#+  +:+       +#+        */
+/*   By: shoque <shoque@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/24 18:16:23 by farhanmasfi       #+#    #+#             */
-/*   Updated: 2026/07/24 18:16:25 by farhanmasfi      ###   ########.fr       */
+/*   Created: 2025/07/09 16:23:10 by shoque            #+#    #+#             */
+/*   Updated: 2025/07/29 17:57:01 by shoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#include "libft.h"
+
+int	ft_isprint(int c)
 {
-	return (0);
+	return (c >= 32 && c <= 126);
 }

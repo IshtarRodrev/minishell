@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: farhanmasfickhoque <farhanmasfickhoque@    +#+  +:+       +#+        */
+/*   By: shoque <shoque@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/24 18:16:23 by farhanmasfi       #+#    #+#             */
-/*   Updated: 2026/07/24 18:16:25 by farhanmasfi      ###   ########.fr       */
+/*   Created: 2025/07/21 20:30:30 by shoque            #+#    #+#             */
+/*   Updated: 2025/07/29 19:47:59 by shoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#include "libft.h"
+
+char	*ft_strdup(const char *src)
 {
-	return (0);
+	char	*dest;
+
+	dest = malloc((ft_strlen(src) + 1) * sizeof(char));
+	if (!dest)
+		return (NULL);
+	ft_strlcpy(dest, src, ft_strlen(src) + 1);
+	return (dest);
 }
