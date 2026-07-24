@@ -1,0 +1,12 @@
+# Compiled objects and binaries
+*.o
+*.a
+minishell
+test
+.vscode/
+
+# macOS
+.DS_Store
+
+# Debug symbols
+*.dSYM/
