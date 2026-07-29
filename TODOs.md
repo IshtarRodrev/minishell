@@ -2,24 +2,28 @@ EVALUATION SHEET HERE: https://github.com/Dsite42/minishell/blob/master/minishel
 
 Mystery golbal variable is just the same signal as in minitalk (ack_recieved) but it rather used to interrupt current process run in minishell (for example by using ctrl+C)
 
-PROJECT STRUCTURE SUGGESTED by Alina:
+TODO: Naming should be discussed before its too late! o_0
+
+LIST OF COMMANDS TO IMPLEMENT:
+◦ echo with option -n (including variables inside '' and "");
+◦ cd with only a relative or absolute path;
+◦ pwd with no options;
+◦ export with no options;
+◦ unset with no options;
+◦ env with no options or arguments;
+◦ exit with no options;
+
+CURRENT PROJECT STRUCTURE:
 minishell/
 ├── Makefile
 ├── README.md
-├── include/
-│   ├── minishell.h
-│   ├── parser.h
-│   ├── executor.h
-│   ├── env.h
-│   ├── utils.h
-│   └── libft.h
+├── minishell.h
 ├── src/
 │   ├── main.c
-│   │
-│   ├── parser/
-│   │   └── parser.c
+│   ├── parse/
+│   │   └── ft_parse.c
 │   ├── executor/
-│   │   ├── exec.c
+│   │   ├── execute.c
 │   │   └── signals.c
 │   ├── env/
 │   │   ├── env_init.c
@@ -29,6 +33,7 @@ minishell/
 │       ├── error.c
 │       └── free.c
 └── libft/   (optional, probably wont be added)
+		└── libft.h
 
 PROJECT STRUCTURE SUGGESTED by Samir:
 <please provide if there are suggestions>
