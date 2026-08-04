@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: farhanmasfickhoque <farhanmasfickhoque@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/24 18:16:23 by farhanmasfi       #+#    #+#             */
-/*   Updated: 2026/07/30 20:00:09 by farhanmasfi      ###   ########.fr       */
+/*   Created: 2026/07/27 14:37:35 by farhanmasfi       #+#    #+#             */
+/*   Updated: 2026/07/27 14:41:59 by farhanmasfi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include "../minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+void	free_split(char **arr)
 {
-	t_cmd	cmd;
+	int	i;
 
-	(void)argc;
-	(void)argv;
-	cmd.argv = malloc(sizeof(char *) * 3);
-	cmd.argv[0] = "echo";
-	cmd.argv[1] = "hello";
-	cmd.argv[2] = NULL;
-	execute_command(&cmd, envp);
-	free(cmd.argv);
-	return (0);
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
