@@ -6,7 +6,7 @@
 /*   By: akechedz <akechedz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 14:33:25 by akechedz          #+#    #+#             */
-/*   Updated: 2026/08/08 21:28:23 by akechedz         ###   ########.fr       */
+/*   Updated: 2026/08/11 21:49:59 by akechedz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,39 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-typedef struct s_opt
+typedef enum e_type
 {
-	char			*type;
+	CMD,
+	PIPE,
+	OP,
+	BRC
+}	t_type;
+
+typedef struct s_minishell
+{
+	chr				**envp;
+	pid_t			*pids;
+	t_expr			*tree_root_unit
+}	t_minishell;
+
+
+typedef struct s_oprt
+{
+	char			type;
 	struct s_expr	*right;
 	struct s_expr	*left;
-}	t_opt;
+}	t_oprt;
 
 typedef struct s_expr
 {
-	char			*type; //TODO: Eventually enum data type: CMD/PIPE/OP/BRAC
+	t_type			type; //TODO: Eventually enum data type: CMD/PIPE/OP/BRAC
+	union minishell
+	{
+		t_cmd		*cmd;
+		t_pipe		*pipe;
+		t_oprt		*oprt;
+		t_brac		*brac;
+	};
 }	t_expr;
 
 typedef struct s_pipe
