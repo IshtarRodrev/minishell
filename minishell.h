@@ -6,7 +6,7 @@
 /*   By: akechedz <akechedz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 14:33:25 by akechedz          #+#    #+#             */
-/*   Updated: 2026/08/11 21:49:59 by akechedz         ###   ########.fr       */
+/*   Updated: 2026/08/11 23:11:39 by akechedz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_minishell
 	t_expr			*tree_root_unit
 }	t_minishell;
 
-
 typedef struct s_oprt
 {
 	char			type;
@@ -57,7 +56,7 @@ typedef struct s_expr
 
 typedef struct s_pipe
 {
-	struct s_cmd	**commands;
+	t_expr			**commands;
 }	t_pipe;
 
 typedef struct s_cmd
