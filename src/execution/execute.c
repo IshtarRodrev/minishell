@@ -6,7 +6,7 @@
 /*   By: farhanmasfickhoque <farhanmasfickhoque@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 17:36:45 by farhanmasfi       #+#    #+#             */
-/*   Updated: 2026/08/18 19:52:19 by farhanmasfi      ###   ########.fr       */
+/*   Updated: 2026/08/18 20:28:43 by farhanmasfi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,5 +227,47 @@ int	builtin_unset(t_exec_cmd *cmd, t_shell *shell)
 		else
 			i++;
 	}
+	return (0);
+}
+void	run_child(char **argv, t_shell *shell)
+{
+	char	*path;
+
+	path = get_command_path(argv[0], shell->env);
+	if (!path)
+	{
+		printf("command not found: %s\n", argv[0]);
+		exit(127);
+	}
+	execve(path, argv, shell->env);
+	exit(127);
+}
+int	run_two(t_pipeline *pl, t_shell *shell)
+{
+	int		fds[2];
+	pid_t	pid1;
+	pid_t	pid2;
+
+	pipe(fds);
+	pid1 = fork();
+	if (pid1 == 0)
+	{
+		dup2(fds[1], STDOUT_FILENO);
+		close(fds[0]);
+		close(fds[1]);
+		run_child(pl->cmds[0], shell);
+	}
+	pid2 = fork();
+	if (pid2 == 0)
+	{
+		dup2(fds[0], STDIN_FILENO);
+		close(fds[0]);
+		close(fds[1]);
+		run_child(pl->cmds[1], shell);
+	}
+	close(fds[0]);
+	close(fds[1]);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
 	return (0);
 }

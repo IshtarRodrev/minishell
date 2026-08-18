@@ -6,7 +6,7 @@
 /*   By: farhanmasfickhoque <farhanmasfickhoque@    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 14:33:25 by akechedz          #+#    #+#             */
-/*   Updated: 2026/08/18 19:52:31 by farhanmasfi      ###   ########.fr       */
+/*   Updated: 2026/08/18 20:35:05 by farhanmasfi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,12 @@ typedef struct s_shell
 	int		exit_status;
 }	t_shell;
 
+typedef struct s_pipeline
+{
+	char	***cmds;
+	int		count;
+}	t_pipeline;
+
 int		execute_command(t_exec_cmd *cmd, t_shell *shell);
 char	*get_path_env(char **envp);
 void    free_split(char **arr);
@@ -112,5 +118,9 @@ char	*get_value(char *arg);
 char	**add_env_var(char **env, char *new_entry);
 int		builtin_export(t_exec_cmd *cmd, t_shell *shell);
 int		builtin_unset(t_exec_cmd *cmd, t_shell *shell);
+t_pipeline	parse_pipeline(char *line);
+void	free_pipeline(t_pipeline *pl);
+void	run_child(char **argv, t_shell *shell);
+int		run_two(t_pipeline *pl, t_shell *shell);
 
 #endif
