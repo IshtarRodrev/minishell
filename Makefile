@@ -6,7 +6,7 @@
 #    By: farhanmasfickhoque <farhanmasfickhoque@    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/24 18:05:15 by farhanmasfi       #+#    #+#              #
-#    Updated: 2026/07/27 14:40:40 by farhanmasfi      ###   ########.fr        #
+#    Updated: 2026/08/15 18:23:58 by farhanmasfi      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 
 SRCS		= src/main.c \
 			  src/execution/execute.c \
-			  src/utils/free.c
+			  src/utils/free.c \
+			  src/env/env_init.c
 
 OBJS		= $(SRCS:.c=.o)
 
