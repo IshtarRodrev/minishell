@@ -6,7 +6,7 @@
 /*   By: akechedz <akechedz@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 14:33:25 by akechedz          #+#    #+#             */
-/*   Updated: 2026/08/11 23:11:39 by akechedz         ###   ########.fr       */
+/*   Updated: 2026/08/18 18:36:00 by akechedz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,104 @@
 # define MINISHELL_H
 
 /* ************************************************************************** */
-/*                                   PARSING                                  */
+/*                                   INCLUDES                                 */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
 
-typedef enum e_type
-{
-	CMD,
-	PIPE,
-	OP,
-	BRC
-}	t_type;
+# include <stdlib.h>
+# include <string.h>
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
-typedef struct s_minishell
+/* ************************************************************************** */
+/*                                   TOKENIZER                                */
+/* ************************************************************************** */
+
+typedef enum e_toktype
 {
-	chr				**envp;
-	pid_t			*pids;
-	t_expr			*tree_root_unit
-}	t_minishell;
+    TOK_WORD,
+    TOK_PIPE,
+    TOK_AND,
+    TOK_OR,
+    TOK_LPAREN,
+    TOK_RPAREN,
+    TOK_REDIR_IN,
+    TOK_REDIR_OUT,
+    TOK_REDIR_APPEND,
+    TOK_HEREDOC,
+    TOK_END
+}   t_toktype;
+
+typedef struct s_token
+{
+    t_toktype   type;
+    char        *value;
+}   t_token;
+
+typedef struct s_toklist
+{
+    t_token     *arr;
+    size_t      size;
+    size_t      cap;
+}   t_toklist;
+
+t_toklist   *ft_tokenize(char *s);
+void        debug_tokens(t_toklist *lst);
+
+/* ************************************************************************** */
+/*                                   PARSER                                   */
+/* ************************************************************************** */
+
+typedef struct s_expr   t_expr;
 
 typedef struct s_oprt
 {
-	char			type;
-	struct s_expr	*right;
-	struct s_expr	*left;
-}	t_oprt;
-
-typedef struct s_expr
-{
-	t_type			type; //TODO: Eventually enum data type: CMD/PIPE/OP/BRAC
-	union minishell
-	{
-		t_cmd		*cmd;
-		t_pipe		*pipe;
-		t_oprt		*oprt;
-		t_brac		*brac;
-	};
-}	t_expr;
+    char            type;
+    t_expr          *left;
+    t_expr          *right;
+}   t_oprt;
 
 typedef struct s_pipe
 {
-	t_expr			**commands;
-}	t_pipe;
+    t_expr          **commands;
+}   t_pipe;
 
 typedef struct s_cmd
 {
-	char			*text;
-	char			*suffix;
-}	t_cmd;
+    char            *text;
+    char            *suffix;
+}   t_cmd;
 
 typedef struct s_brac
 {
-	struct s_expr	*expr;
-}	t_brac;
+    t_expr          *expr;
+}   t_brac;
 
-volatile sig_atomic_t	the_signal = 0;
+typedef struct s_expr
+{
+    t_toktype       type;
+    union
+    {
+        t_pipe      *pipe;
+        t_oprt      *oprt;
+        t_cmd       *cmd;
+        t_brac      *brac;
+    };
+}   t_expr;
+
+char        *ft_parse(char *prompt);
 
 /* ************************************************************************** */
-/*                                   EXECUTION                                 */
+/*                                   EXECUTION                                */
 /* ************************************************************************** */
 
-int	execute_command(t_cmd *cmd, char **envp);
+typedef struct s_minishell
+{
+    char            **envp;
+    pid_t           *pids;
+    t_expr          *tree_root_unit;
+}   t_minishell;
+
+int execute_command(t_cmd *cmd, char **envp);
 
 #endif
